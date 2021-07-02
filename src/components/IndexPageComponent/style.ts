@@ -61,9 +61,7 @@ export const Carousel = styled.div`
 `;
 
 export const Welcome = styled.div`
-    
     margin-bottom: 20px;
-
     h1{
         font-size: 1.5rem;
     }
@@ -72,11 +70,4 @@ export const Welcome = styled.div`
         font-size: .95rem;
         line-height: 17px;
     }
-`;
-
-export const BottomSection = styled.div`
-    background-color: var(--red);
-    width: 100%;
-    height: 20vh;
-    margin-bottom: 20px;
 `;

@@ -56,6 +56,7 @@ export const Header = styled.div`
     img{
         width: 200px;
         height: 70px;
+        cursor: pointer;
     }
     .menu{
         display: none;
@@ -68,6 +69,8 @@ export const Header = styled.div`
             height: 42px;
             width: 420px;
             border: black 1px solid;
+            color: black;
+            padding: 5px;
         }
         >button{
             background-color: var(--red);

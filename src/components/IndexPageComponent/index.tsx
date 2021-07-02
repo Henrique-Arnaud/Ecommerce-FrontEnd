@@ -1,7 +1,6 @@
 import React from "react";
-import { FiMenu, FiSearch } from 'react-icons/fi';
 import Link from 'next/link';
-import { Container, Menu, Carousel, Welcome, BottomSection } from "./style";
+import { Container, Menu, Carousel, Welcome } from "./style";
 
 interface PageProps {
     categories: Array<CategoriesProps>;
@@ -20,19 +19,21 @@ export function IndexPageComponent({ categories }: PageProps) {
                     <menu>
 
                         <li>
-                            <a href="">Página Inicial</a>
+                            <Link href="/">
+                                Página Inicial
+                            </Link>
                         </li>
                         {categories &&
                             categories.map(category => {
                                 return (
-                                    <li>
-                                        <a href={`/${category.id}`}>{category.name}</a>
+                                    <li key={category.id}>
+                                        <Link href={`/${category.id}`}>{category.name}</Link>
                                     </li>
                                 );
                             })
                         }
                         <li>
-                            <a href="">Contato</a>
+                            <Link href="">Contato</Link>
                         </li>
                     </menu>
                 </Menu>
@@ -47,9 +48,7 @@ export function IndexPageComponent({ categories }: PageProps) {
                     </Welcome>
                 </div>
             </div>
-            <BottomSection>
 
-            </BottomSection>
         </Container>
     );
 }

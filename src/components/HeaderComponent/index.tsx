@@ -24,9 +24,9 @@ export function HeaderComponent({ categories }: PageProps) {
             <Header>
                 <FiMenu className="menu" />
                 <div>
-                    <a href="/">
+                    <Link href="/">
                         <img src="/logo.jpg" alt="Logo da empresa WebJump" />
-                    </a>
+                    </Link>
                 </div>
                 <FiSearch className="searchIcon" />
                 <div className="searchArea">
@@ -36,15 +36,15 @@ export function HeaderComponent({ categories }: PageProps) {
             </Header>
             <Menu>
                 <div>
-                    <a href="">PÁGINA INICIAL</a>
+                    <Link href="/">PÁGINA INICIAL</Link>
                     {categories &&
                         categories.map(category => {
                             return (
-                                <a href={`/${category.id}`}>{category.name.toUpperCase()}</a>
+                                <Link href={`/${category.id}`} key={category.id}>{category.name.toUpperCase()}</Link>
                             );
                         })             
                     }
-                    <a href="">CONTATO</a>
+                    <Link href="/">CONTATO</Link>
                 </div>
             </Menu>
         </Container>

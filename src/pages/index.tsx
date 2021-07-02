@@ -1,72 +1,44 @@
 import Head from 'next/head'
 import { createServer } from "miragejs"
-import { GetServerSideProps } from 'next'
 import { api } from '../services/api'
 import React, { useCallback, useEffect, useState } from 'react'
 import { HeaderComponent } from '../components/HeaderComponent'
 import { IndexPageComponent } from '../components/IndexPageComponent'
+import { BottomComponent } from '../components/BottomComponent'
+import { GetServerSideProps } from 'next'
 
-createServer({
-    routes() {
-        this.namespace = "api/V1"
-        this.get("/categories", () => ({
-            categories: [
-                {
-                    id: 1,
-                    name: "Camisetas",
-                    path: "camisetas"
-                },
-                {
-                    id: 2,
-                    name: "Calças",
-                    path: "calças"
-                },
-                {
-                    id: 3,
-                    name: "Calçados",
-                    path: "calçados"
-                }
-            ],
-        }))
-    }
-})
-
+interface PageProps{
+    categories: Array<CategoriesProps>;
+}
 interface CategoriesProps {
     id: number;
     name: string;
 }
-export default function Home() {
-
-    const [categories, setCategories] = useState<CategoriesProps[]>();
-
-    const getCategories = useCallback(
-        async () => {
-            try{
-                const categoriesResponse = await api.get(`/categories`);
-                setCategories(categoriesResponse.data.categories)
-            }
-            catch(error){
-                alert("Erro ao carregar as categorias");
-            }
-        },
-        [categories],
-    )
-
-    useEffect(() => {
-        getCategories();
-    }, [])
+export default function Home({ categories }: PageProps) {
 
     return (
         <>
             <Head>
                 <title>Webjump - Desafio Frontend</title>
             </Head>
-            <HeaderComponent
+             <HeaderComponent
                 categories={categories}
             />
             <IndexPageComponent 
                 categories={categories}
-            />
+            /> 
+            <BottomComponent/>
         </>
     )
+} 
+
+export const getServerSideProps: GetServerSideProps = async () => {
+
+    const categories = await api.get("/api/V1/categories/list");
+
+    return {
+        props: {
+            categories: categories.data.items,
+        }
+    }
 }
