@@ -1,12 +1,11 @@
 # Teste Front-End WebJump
 
-Prazer meu nome é Henrique Arnaud e eu sou um dos cadidatos para compor a equipe de Devs da WebJump.
-
 A minha aplicação utiliza: 
 
 * React para a composição do front end
 * O framework NextJs para otimização de rotas e páginas
-* Typescript na tipagem, principalmente, de objetos
+* Foi usado SSR (Server Side Render) para o consumo da api de produtos
+* Typescript na tipagem, principalmente de objetos
 * Styled-Components para estilização das páginas
 
 Para inicializar a api, dê o comando `yarn serve`
