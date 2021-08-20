@@ -1,10 +1,10 @@
-# Teste Front-End WebJump
+# Página inicial de E-Commerce 
 
 A minha aplicação utiliza: 
 
 * React para a composição do front end
 * O framework NextJs para otimização de rotas e páginas
-* Foi usado SSR (Server Side Render) para o consumo da api de produtos
+* Foi usado SSG (Static Site Generation) para o consumo da api de produtos com poucas requisições 
 * Typescript na tipagem, principalmente de objetos
 * Styled-Components para estilização das páginas
 
