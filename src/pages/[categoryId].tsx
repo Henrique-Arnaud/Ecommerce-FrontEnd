@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { createServer } from "miragejs"
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next'
 import { api } from '../services/api'
 import Head from 'next/head'
 import { BottomComponent } from '../components/BottomComponent'
@@ -35,9 +35,6 @@ interface CategoryProps {
 export default function categoryId({ categories, category, categoryId }: PageProps) {
     return (
         <>
-            <Head>
-                <title>Webjump - Desafio Frontend</title>
-            </Head>
             <HeaderComponent 
                 categories={categories}
             />
@@ -51,7 +48,20 @@ export default function categoryId({ categories, category, categoryId }: PagePro
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getStaticPaths: GetStaticPaths = async () =>{
+    
+    const response = await api.get("/api/V1/categories/list");
+
+    const paths = response.data.items.map(category=>{
+        return { params: { categoryId: category.id.toString()} };
+    })
+    return{
+        paths,
+        fallback: false
+    }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
     const { categoryId } = params;
 
     const categories = await api.get("/api/V1/categories/list");

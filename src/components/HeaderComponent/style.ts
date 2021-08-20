@@ -55,7 +55,7 @@ export const Header = styled.div`
     }
     img{
         width: 200px;
-        height: 70px;
+        height: 110px;
         cursor: pointer;
     }
     .menu{
